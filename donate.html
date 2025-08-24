@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BIO-T | Donate</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function handleDonation(event) {
+      event.preventDefault(); // stop page reload
+
+      const name = document.getElementById("donorName").value;
+      const amount = document.getElementById("donationAmount").value;
+
+      if(amount && amount > 0) {
+        document.getElementById("thankYouMessage").innerHTML = 
+          `🌿 Thank you, <b>${name}</b>, for pledging ₹${amount}!<br>
+          Your support helps us turn tea waste into eco-plastic. 💚`;
+      } else {
+        document.getElementById("thankYouMessage").innerHTML = 
+          "⚠️ Please enter a valid donation amount.";
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <header>
+    <h1>BIO-T 🌱</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="subscribe.html">Subscribe</a>
+    <a href="shop.html">Shop</a>
+    <a href="donate.html">Donate</a>
+  </nav>
+
+  <div class="container">
+    <h2>Support Our Mission</h2>
+    <p>Your donation helps us save tea waste and fight plastic pollution. 🌍</p>
+
+    <form onsubmit="handleDonation(event)">
+      <input type="text" id="donorName" placeholder="Your Name" required><br><br>
+      <input type="email" placeholder="Your Email" required><br><br>
+      <input type="number" id="donationAmount" placeholder="Donation Amount (₹)" min="10" required><br><br>
+      <button type="submit">Donate Now</button>
+    </form>
+
+    <p id="thankYouMessage" style="margin-top:20px; font-weight:bold; color:#2e7d32;"></p>
+  </div>
+
+</body>
+</html>

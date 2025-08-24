@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BIO-T | Shop</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    let cart = [];
+
+    function addToCart(itemName, price) {
+      let quantity = parseInt(prompt(`Enter quantity for ${itemName}:`, 1));
+      if (!quantity || quantity <= 0) {
+        alert("⚠️ Please enter a valid quantity.");
+        return;
+      }
+
+      // Add item to cart
+      cart.push({ itemName, price, quantity });
+      updateCart();
+    }
+
+    function updateCart() {
+      let cartList = document.getElementById("cartItems");
+      let total = 0;
+      cartList.innerHTML = "";
+
+      cart.forEach((item, index) => {
+        let cost = item.price * item.quantity;
+        total += cost;
+        cartList.innerHTML += `<li>${item.quantity} x ${item.itemName} - ₹${cost} 
+          <button onclick="removeItem(${index})">❌</button></li>`;
+      });
+
+      document.getElementById("cartTotal").innerText = "Total: ₹" + total;
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+  </script>
+</head>
+<body>
+
+  <header>
+    <h1>BIO-T 🌱</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="subscribe.html">Subscribe</a>
+    <a href="shop.html">Shop</a>
+    <a href="donate.html">Donate</a>
+  </nav>
+
+  <div class="container">
+    <h2>Shop Eco-Friendly Products</h2>
+    <p>Turn waste into wonders! Buy sustainable products made from tea waste.</p>
+
+    <div class="product">
+      <h3>Eco-Packaging Tray</h3>
+      <p>₹50 each</p>
+      <button onclick="addToCart('Eco-Packaging Tray', 50)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Biodegradable Cup</h3>
+      <p>₹30 each</p>
+      <button onclick="addToCart('Biodegradable Cup', 30)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Seed Starter Pot</h3>
+      <p>₹20 each</p>
+      <button onclick="addToCart('Seed Starter Pot', 20)">Add to Cart</button>
+    </div>
+
+    <hr>
+
+    <h2>Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <p id="cartTotal">Total: ₹0</p>
+  </div>
+
+</body>
+</html>
